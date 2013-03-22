@@ -18,14 +18,13 @@ int main()
   for (i=0; i<n; i++) {
     setup();
     scanf("%s%s", str_a, str_b);
-
     str_reverse(str_a);
     str_reverse(str_b);
 
     sprintf(sum, "%i", atoi(str_a) + atoi(str_b));
     str_reverse(sum);
-    printf("%i\n", atoi(sum));
 
+    printf("%i\n", atoi(sum));
     teardown();
   }
   return 0;
