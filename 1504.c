@@ -2,46 +2,56 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define BUFF_SIZE 250
+#define BUFF_SIZE 50
 
 void str_reverse(char *, char *);
-void str_clear(char *);
+void setup(void);
+void teardown(void);
+
+char *rev_a, *rev_b;
+char *str_a, *str_b;
+char *sum, *rev_sum;
 
 int main()
 {
   int i,n;
   scanf("%i", &n);
 
-  char rev_a[BUFF_SIZE], rev_b[BUFF_SIZE];
-  char str_a[BUFF_SIZE], str_b[BUFF_SIZE];
-  char sum[BUFF_SIZE], rev_sum[BUFF_SIZE];
-
   for (i=0; i<n; i++) {
-    str_clear(rev_a);
-    str_clear(rev_b);
+    setup();
+
     scanf("%s%s", rev_a, rev_b);
 
-    str_clear(str_a);
-    str_clear(str_b);
     str_reverse(rev_a, str_a);
     str_reverse(rev_b, str_b);
 
-    str_clear(sum);
-    str_clear(rev_sum);
     sprintf(sum, "%i", atoi(str_a) + atoi(str_b));
     str_reverse(sum, rev_sum);
-
     printf("%i\n", atoi(rev_sum));
-  }
 
+    teardown();
+  }
   return 0;
 }
 
-void str_clear(char *astring)
+void setup()
 {
-  int i;
-  for (i=0; i<BUFF_SIZE; ++i)
-    astring[i] = '\0';
+  rev_a = malloc(BUFF_SIZE * sizeof(char));
+  rev_b = malloc(BUFF_SIZE * sizeof(char));
+  str_a = malloc(BUFF_SIZE * sizeof(char));
+  str_b = malloc(BUFF_SIZE * sizeof(char));
+  sum = malloc(BUFF_SIZE * sizeof(char));
+  rev_sum = malloc(BUFF_SIZE * sizeof(char));
+}
+
+void teardown()
+{
+  free(rev_a);
+  free(rev_b);
+  free(str_a);
+  free(str_b);
+  free(sum);
+  free(rev_sum);
 }
 
 void str_reverse(char *astring, char *reversed)
