@@ -4,13 +4,11 @@
 
 #define BUFF_SIZE 50
 
-void str_reverse(char *, char *);
+void str_reverse(char *);
 void setup(void);
 void teardown(void);
 
-char *rev_a, *rev_b;
-char *str_a, *str_b;
-char *sum, *rev_sum;
+char *str_a, *str_b, *sum;
 
 int main()
 {
@@ -19,15 +17,14 @@ int main()
 
   for (i=0; i<n; i++) {
     setup();
+    scanf("%s%s", str_a, str_b);
 
-    scanf("%s%s", rev_a, rev_b);
-
-    str_reverse(rev_a, str_a);
-    str_reverse(rev_b, str_b);
+    str_reverse(str_a);
+    str_reverse(str_b);
 
     sprintf(sum, "%i", atoi(str_a) + atoi(str_b));
-    str_reverse(sum, rev_sum);
-    printf("%i\n", atoi(rev_sum));
+    str_reverse(sum);
+    printf("%i\n", atoi(sum));
 
     teardown();
   }
@@ -36,27 +33,25 @@ int main()
 
 void setup()
 {
-  rev_a = malloc(BUFF_SIZE * sizeof(char));
-  rev_b = malloc(BUFF_SIZE * sizeof(char));
   str_a = malloc(BUFF_SIZE * sizeof(char));
   str_b = malloc(BUFF_SIZE * sizeof(char));
   sum = malloc(BUFF_SIZE * sizeof(char));
-  rev_sum = malloc(BUFF_SIZE * sizeof(char));
 }
 
 void teardown()
 {
-  free(rev_a);
-  free(rev_b);
   free(str_a);
   free(str_b);
   free(sum);
-  free(rev_sum);
 }
 
-void str_reverse(char *astring, char *reversed)
+void str_reverse(char *astring)
 {
   int i,n=strlen(astring);
-  for (i=0; i<n; i++)
-    reversed[n-1-i] = astring[i];
+  char temp;
+  for (i=0; i<n/2; i++) {
+    temp = astring[i];
+    astring[i] = astring[n-1-i];
+    astring[n-1-i] = temp;
+  }
 }
