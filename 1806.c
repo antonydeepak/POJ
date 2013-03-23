@@ -23,13 +23,9 @@ void print_slices(int dim)
     for (x=-1*dim; x<=dim; x++) {
       for (y=-1*dim; y<=dim; y++) {
         dist = abs(x) + abs(y) + abs(z);
-        if (dist > dim)
-          printf(".");
-        else
-          printf("%d", dist);
-      }
-      printf("\n");
+        if (dist > dim) printf(".");
+        else printf("%d", dist);
+      } printf("\n");
     }
-  }
-  printf("\n");
+  } printf("\n");
 }
