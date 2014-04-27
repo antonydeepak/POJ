@@ -1,3 +1,5 @@
 *~
-a.out
-sample.input
+*.out
+*.in
+*.input
+.DS_Store
